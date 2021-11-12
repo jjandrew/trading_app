@@ -1,7 +1,7 @@
 import time
 import pyttsx3
 import requests
-from keys import give_keys
+from keys import give_taapi_key
 
 engine = pyttsx3.init()
 
@@ -213,12 +213,11 @@ def get_rsi():
     eth_change = 'n'
     xrp_change = 'n'
     ltc_change = 'n'
-    api_key = give_keys()
+    api_key = give_taapi_key()
     while True:
         btc_value, btc_counter, btc_change = btc_rsi(time_range, btc_value, api_key, btc_counter, btc_change)
         time.sleep(15)
         eth_value, eth_counter, eth_change = eth_rsi(time_range, eth_value, api_key, eth_counter, eth_change)
-        print(eth_value)
         time.sleep(15)
         xrp_value, xrp_counter, xrp_change = xrp_rsi(time_range, xrp_value, api_key, xrp_counter, xrp_change)
         time.sleep(15)

@@ -1,4 +1,4 @@
-from rsi_work import get_rsi
+from crypto_rsi import get_rsi
 import time
 
 if __name__ == '__main__':
