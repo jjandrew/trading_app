@@ -1,5 +1,7 @@
-from crypto_rsi import get_rsi
-import time
+from crypto_rsi import get_taapi_rsi
+from crypto_rsi import get_alpha_rsi
 
 if __name__ == '__main__':
-    get_rsi()
+    while True:
+        get_taapi_rsi()
+        get_alpha_rsi
