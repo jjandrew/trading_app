@@ -227,6 +227,10 @@ def get_taapi_rsi():
         time.sleep(15)
 
 
+
+
+
+
 matic_history = []
 link_history = []
 dot_history = []
