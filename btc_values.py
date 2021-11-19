@@ -4,6 +4,7 @@ import pyttsx3
 from keys import give_alpha_key
 import pandas as pd
 import sqlalchemy
+import matplotlib.pyplot as plt
 
 engine = sqlalchemy.create_engine('sqlite:///BTCGBPstream.db')
 
@@ -40,22 +41,19 @@ def ltc_value(api_key):
 def get_alpha_values():
     api_key = give_alpha_key()
     while True:
-        btc_json = btc_value(api_key)
-        print(btc_json)
-        btc_df = create_frame(btc_json)
-        btc_df.to_sql('BTCGBP', engine, if_exists='append', index=False)
-        print(btc_df)
+        count = 0
+        while count < 3:
+            btc_json = btc_value(api_key)
+            btc_df = create_frame(btc_json)
+            btc_df.to_sql('BTCGBP', engine, if_exists='append', index=False)
+            print('Data Frame: ', btc_df)
+            count += 1
+            time.sleep(180)
+        count = 0
 
-        time.sleep(60)
-
-        #eth_result = eth_value(api_key)
-        #time.sleep(15)
-        #xrp_result = xrp_value(api_key)
-        #time.sleep(15)
-        #ltc_result = ltc_value(api_key)
-        #print("")
-        #time.sleep(15)
-
+        df = pd.read_sql('BTCGBP', engine)
+        df.Price.plot()
+        plt.show()
 
 if __name__ == '__main__':
     get_alpha_values()
